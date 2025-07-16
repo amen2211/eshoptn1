@@ -17,6 +17,11 @@
             margin: 32px 0 16px 0;
             color: #333;
         }
+        h2 {
+            text-align: center;
+            margin: 32px 0 16px 0;
+            color: #333;
+        }
         .navbar {
             background: #7c3aed;
             padding: 12px 0;
@@ -29,6 +34,12 @@
             display: inline-flex;
             gap: 16px;
         }
+    .c {
+  position: absolute;
+  left: 95%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+}
         .navbar a {
             color: #fff;
             text-decoration: none;
@@ -111,9 +122,12 @@
             <li><a href="about.html">حول</a></li>
             <li><a href="contact.html">اتصل بنا</a></li>
             <li><a href="privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="1.html">تسجيل الدخول خاص </a></li>
+            
         </ul>
     </nav>
     <h1>متجر المنتجات الرقمية</h1>
+    <h2> تنبيه : كل شيئ مجاني</h2>
     <div class="products-container" id="products"></div>
     <script>
         // بيانات المنتجات
@@ -380,8 +394,8 @@
              {
                 id: "037",
                 name: "حساب shahed vip 10 dt",
-                desc: "حساب فري فاير مميز بسعر 100 دولار.",
-                type: "حسابات فري فاير",
+                desc: "حساب shahed vip مميز بسعر 10 دولار.",
+                type: "shahed vip",
                 img: "🧑‍💻"
             }
 
@@ -439,5 +453,8 @@
             container.appendChild(card);
         });
     </script>
+    <footer style="text-align: center; padding: 20px; background: #7c3aed; color: #fff; position: relative; bottom: 0; width: 100%;">
+        <p>جميع الحقوق محفوظة &copy; 2025</p>
+    </footer>
 </body>
 </html>
