@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* From Uiverse.io by rishichawda */ 
+/* The switch - the box around the slider */
+#theme-toggle-button {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 7em;
+  cursor: pointer;
+}
+
+/* Hide default HTML checkbox */
+#toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#container,
+#patches,
+#stars,
+#button,
+#sun,
+#moon,
+#cloud {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.25s;
+}
+
+/* night sky background */
+#toggle:checked + svg #container {
+  fill: #2b4360;
+}
+
+/* move button to right when checked */
+#toggle:checked + svg #button {
+  transform: translate(28px, 2.333px);
+}
+
+/* show/hide sun and moon based on checkbox state */
+#sun {
+  opacity: 1;
+}
+
+#toggle:checked + svg #sun {
+  opacity: 0;
+}
+
+#moon {
+  opacity: 0;
+}
+
+#toggle:checked + svg #moon {
+  opacity: 1;
+}
+
+/* show or hide background items on checkbox state */
+#cloud {
+  opacity: 1;
+}
+
+#toggle:checked + svg #cloud {
+  opacity: 0;
+}
+
+#stars {
+  opacity: 0;
+}
+
+#toggle:checked + svg #stars {
+  opacity: 1;
+}
+.z{
+  border: #12B1D1 2px solid;
+  border-radius: 20px;
+  padding: 10px;
+  background: #c6c0ff;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  transition: all 0.2s ease-in-out; 
+}
+.aa {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  font-style: italic;
+}
+
+.c {
+  position: absolute;
+  left: 95%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.a{
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    display: flex;
+}
+.container {
+  max-width: 350px;
+  background: #F8F9FD;
+  background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%);
+  border-radius: 40px;
+  padding: 25px 35px;
+  border: 5px solid rgb(255, 255, 255);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+  margin: 20px;
+}
+
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: rgb(16, 137, 211);
+}
+
+.form {
+  margin-top: 20px;
+}
+
+.form .input {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  box-shadow: #cff0ff 0px 10px 10px -5px;
+  border-inline: 2px solid transparent;
+}
+
+.form .input::-moz-placeholder {
+  color: rgb(170, 170, 170);
+}
+
+.form .input::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+.form .input:focus {
+  outline: none;
+  border-inline: 2px solid #12B1D1;
+}
+
+.form .forgot-password {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.form .forgot-password a {
+  font-size: 15px;
+  color: #0099ff;
+  text-decoration: none;
+}
+
+.form .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, rgb(16, 137, 211) 0%, rgb(18, 177, 209) 100%);
+  color: white;
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
+
+.form .login-button:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
+
+.social-account-container {
+  margin-top: 25px;
+}
+
+.social-account-container .title {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: rgb(170, 170, 170);
+}
+
+.social-account-container .social-accounts {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.social-account-container .social-accounts .social-button {
+  background: linear-gradient(45deg, rgb(0, 0, 0) 0%, rgb(112, 112, 112) 100%);
+  border: 5px solid white;
+  padding: 5px;
+  border-radius: 50%;
+  width: 40px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.social-account-container .social-accounts .social-button .svg {
+  fill: white;
+  margin: auto;
+}
+
+.social-account-container .social-accounts .social-button:hover {
+  transform: scale(1.2);
+}
+
+.social-account-container .social-accounts .social-button:active {
+  transform: scale(0.9);
+}
+
+.agreement {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.agreement a {
+  text-decoration: none;
+  color: #0099ff;
+  font-size: 9px;
+}
+    </style>
+</head>
+<body>
+  <div class="z" style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%);">
+    <div class="aa"></div>
+
+  <span>مرحبا بيك في موقعنا</span>
+</div>
+
+  <div class="c">
+<label id="theme-toggle-button">
+  <input type="checkbox" id="toggle">
+  <svg viewBox="0 0 69.667 44" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(3.5 3.5)" data-name="Component 15 – 1" id="Component_15_1">
+      
+      
+      <g filter="url(#container)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+        <rect fill="#83cbd8" transform="translate(3.5 3.5)" rx="17.5" height="35" width="60.667" data-name="container" id="container"></rect>
+      </g>
+      
+      <g transform="translate(2.333 2.333)" id="button">
+        
+        <g data-name="sun" id="sun">
+          <g filter="url(#sun-outer)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+            <circle fill="#f8e664" transform="translate(5.83 5.83)" r="15.167" cy="15.167" cx="15.167" data-name="sun-outer" id="sun-outer-2"></circle>
+          </g>
+          <g filter="url(#sun)" transform="matrix(1, 0, 0, 1, -5.83, -5.83)">
+            <path fill="rgba(246,254,247,0.29)" transform="translate(9.33 9.33)" d="M11.667,0A11.667,11.667,0,1,1,0,11.667,11.667,11.667,0,0,1,11.667,0Z" data-name="sun" id="sun-3"></path>
+          </g>
+          <circle fill="#fcf4b9" transform="translate(8.167 8.167)" r="7" cy="7" cx="7" id="sun-inner"></circle>
+        </g>
+        
+          
+        <g data-name="moon" id="moon">
+          <g filter="url(#moon)" transform="matrix(1, 0, 0, 1, -31.5, -5.83)">
+            <circle fill="#cce6ee" transform="translate(31.5 5.83)" r="15.167" cy="15.167" cx="15.167" data-name="moon" id="moon-3"></circle>
+          </g>
+          <g fill="#a6cad0" transform="translate(-24.415 -1.009)" id="patches">
+            <circle transform="translate(43.009 4.496)" r="2" cy="2" cx="2"></circle>
+            <circle transform="translate(39.366 17.952)" r="2" cy="2" cx="2" data-name="patch"></circle>
+            <circle transform="translate(33.016 8.044)" r="1" cy="1" cx="1" data-name="patch"></circle>
+            <circle transform="translate(51.081 18.888)" r="1" cy="1" cx="1" data-name="patch"></circle>
+            <circle transform="translate(33.016 22.503)" r="1" cy="1" cx="1" data-name="patch"></circle>
+            <circle transform="translate(50.081 10.53)" r="1.5" cy="1.5" cx="1.5" data-name="patch"></circle>
+          </g>
+        </g>
+      </g>
+      
+      
+      <g filter="url(#cloud)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+        <path fill="#fff" transform="translate(-3466.47 -160.94)" d="M3512.81,173.815a4.463,4.463,0,0,1,2.243.62.95.95,0,0,1,.72-1.281,4.852,4.852,0,0,1,2.623.519c.034.02-.5-1.968.281-2.716a2.117,2.117,0,0,1,2.829-.274,1.821,1.821,0,0,1,.854,1.858c.063.037,2.594-.049,3.285,1.273s-.865,2.544-.807,2.626a12.192,12.192,0,0,1,2.278.892c.553.448,1.106,1.992-1.62,2.927a7.742,7.742,0,0,1-3.762-.3c-1.28-.49-1.181-2.65-1.137-2.624s-1.417,2.2-2.623,2.2a4.172,4.172,0,0,1-2.394-1.206,3.825,3.825,0,0,1-2.771.774c-3.429-.46-2.333-3.267-2.2-3.55A3.721,3.721,0,0,1,3512.81,173.815Z" data-name="cloud" id="cloud"></path>
+      </g>
+
+      
+      <g fill="#def8ff" transform="translate(3.585 1.325)" id="stars" >
+        <path transform="matrix(-1, 0.017, -0.017, -1, 24.231, 3.055)" d="M.774,0,.566.559,0,.539.458.933.25,1.492l.485-.361.458.394L1.024.953,1.509.592.943.572Z"></path>
+        <path transform="matrix(-0.777, 0.629, -0.629, -0.777, 23.185, 12.358)" d="M1.341.529.836.472.736,0,.505.46,0,.4.4.729l-.231.46L.605.932l.4.326L.9.786Z" data-name="star"></path>
+        <path transform="matrix(0.438, 0.899, -0.899, 0.438, 23.177, 29.735)" d="M.015,1.065.475.9l.285.365L.766.772l.46-.164L.745.494.751,0,.481.407,0,.293.285.658Z" data-name="star"></path>
+        <path transform="translate(12.677 0.388) rotate(104)" d="M1.161,1.6,1.059,1,1.574.722.962.607.86,0,.613.572,0,.457.446.881.2,1.454l.516-.274Z" data-name="star"></path>
+        <path transform="matrix(-0.07, 0.998, -0.998, -0.07, 11.066, 15.457)" d="M.873,1.648l.114-.62L1.579.945,1.03.62,1.144,0,.706.464.157.139.438.7,0,1.167l.592-.083Z" data-name="star"></path>
+        <path transform="translate(8.326 28.061) rotate(11)" d="M.593,0,.638.724,0,.982l.7.211.045.724.36-.64.7.211L1.342.935,1.7.294,1.063.552Z" data-name="star"></path>
+        <path transform="translate(5.012 5.962) rotate(172)" d="M.816,0,.5.455,0,.311.323.767l-.312.455.516-.215.323.456L.827.911,1.343.7.839.552Z" data-name="star"></path>
+        <path transform="translate(2.218 14.616) rotate(169)" d="M1.261,0,.774.571.114.3.487.967,0,1.538.728,1.32l.372.662.047-.749.728-.218L1.215.749Z" data-name="star"></path>
+      </g>
+    </g>
+  </svg>
+</label>
+</div>
+    <div class="a">
+<div class="container">
+    <div class="heading">سجل دخولك</div>
+    <form action="" class="form" id="loginForm" onsubmit="event.preventDefault(); login();">
+      <input required class="input" type="email" name="email" id="email" placeholder="الموقع الخاص">
+      <input required class="input" type="password" name="password" id="password" placeholder="كلمة السر ">
+      <span class="forgot-password"><a href="#" id="forgotLink">نسيت كلمة السر او الموقع المخصص</a></span>
+      <input class="login-button" type="submit" value="دخول">
+    </form>
+    <div id="message" style="text-align:center; margin-top:10px;"></div>
+    <div style="text-align:center; margin-top:10px;">
+    </div>
+    <form action="" class="form" id="signupForm" style="display:none;">
+      <input required class="input" type="text" name="username" id="signupUsername" placeholder="Username">
+      <input required class="input" type="email" name="email" id="signupEmail" placeholder="E-mail">
+      <input required class="input" type="password" name="password" id="signupPassword" placeholder="Password">
+      <input class="login-button" type="submit" value="Sign Up">
+    </form>
+    <div class="social-account-container">
+        <span class="title">اتصل بنا ان حدث خطا</span>
+        <div class="social-accounts">
+          <button class="social-button google" onclick="window.location.href='mailto:ameub57m@gmail.com'">
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512">
+              <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+            </svg>
+         
+
+            </svg>
+          </button>
+        </div>
+      </div>
+      <span class="agreement"><a href="#">Learn user licence agreement</a></span>
+  </div>
+</div>
+
+    <div id="errorAlert" style="display:none; position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:999;">
+      <div style="background:#232531; border-radius:16px; padding:18px 22px; min-width:240px; box-shadow:0 8px 24px rgba(0,0,0,0.18); display:flex; align-items:center; gap:12px;">
+        <div style="color:#d65563; background:#fff1; border-radius:8px; padding:6px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#d65563" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z"/>
+          </svg>
+        </div>
+        <div style="flex:1;">
+          <div style="color:#fff; font-size:15px; font-weight:bold;">مرحبا بيك </div>
+          <div style="color:#bdbdbd; font-size:13px;">إذا نسيت كلمة السر أو الموقع المخصص، ابعثلنا إيميل و فريقنا باش يعاونك بسرعة.</div>
+        </div>
+        <button id="closeAlertBtn" style="background:none; border:none; color:#aaa; cursor:pointer; padding:4px; border-radius:6px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <form action="" class="form" id="signupForm" style="display:none;">
+
+    </form>
+
+  </div>
+</div>
+<script>
+
+  document.getElementById('forgotLink').onclick = function(e) {
+    e.preventDefault();
+    document.getElementById('errorAlert').style.display = 'block';
+  };
+
+  document.getElementById('closeAlertBtn').onclick = function() {
+    document.getElementById('errorAlert').style.display = 'none';
+  };
+
+  function login() {
+    const usernameInput = document.getElementById("email").value.trim();
+    const passwordInput = document.getElementById("password").value.trim();
+    const messageDiv = document.getElementById("message");
+
+    if (usernameInput === "amen@loging" && passwordInput === "amen22") {
+      messageDiv.style.color = "green";
+      messageDiv.textContent = "✅ تم تسجيل الدخول بنجاح! سيتم تحويلك للصفحة الرئيسية...";
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 2000);
+    } else {
+      messageDiv.style.color = "red";
+      messageDiv.textContent = "❌ الموقع أو كلمة السر غير صحيحة.";
+    }
+  }
+</script>
+<script>
+  // Theme toggle background
+  document.getElementById('toggle').addEventListener('change', function() {
+    if (this.checked) {
+      document.body.style.background = "#2b4360";
+    } else {
+      document.body.style.background = "linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(244, 247, 251) 100%)";
+    }
+  });
+</script>
+</body>
+
+
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر المنتجات الرقمية</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body {
+            background: #f3f4f6;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin: 32px 0 16px 0;
+            color: #333;
+        }
+        .navbar {
+            background: #7c3aed;
+            padding: 12px 0;
+            text-align: center;
+        }
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            gap: 16px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+        .navbar a:hover {
+            color: #e0e0e0;
+        }
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            padding: 24px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            width: 300px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+        }
+        .product-img {
+            width: 80px;
+            height: 80px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #888;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #222;
+            text-align: center;
+        }
+        .product-desc {
+            font-size: 0.98rem;
+            color: #555;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .product-type {
+            font-size: 0.92rem;
+            color: #6b7280;
+            margin-bottom: 14px;
+        }
+        .buy-btn {
+            background: #7c3aed;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .buy-btn:hover {
+            background: #5b21b6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="home.html">الرئيسية</a></li>
+            <li><a href="about.html">حول</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+            <li><a href="privacy.html">سياسة الخصوصية</a></li>
+        </ul>
+    </nav>
+    <h1>متجر المنتجات الرقمية</h1>
+    <div class="products-container" id="products"></div>
+    <script>
+        // بيانات المنتجات
+        const products = [
+            {
+                id: "001",
+                name: "KMSAuto Net",
+                desc: "أداة تفعيل ويندوز وأوفيس تلقائيًا.",
+                type: "سكريبت تفعيل ويندوز",
+                img: "🖥️"
+            },
+            {
+                id: "002",
+                name: "WinRAR Portable",
+                desc: "برنامج WinRAR نسخة محمولة بدون تثبيت.",
+                type: "برنامج أدوات محمولة",
+                img: "📦"
+            },
+            {
+                id: "003",
+                name: "GitHub Repo Cloner",
+                desc: "سكريبت لنسخ مستودعات GitHub بسهولة.",
+                type: "سكريبتات وأكواد من GitHub",
+                img: "🐙"
+            },
+            {
+                id: "004",
+                name: "لعبة XO بلغة Python",
+                desc: "كود لعبة XO جاهز للتعديل والاستخدام.",
+                type: "أكواد ألعاب",
+                img: "🎮"
+            },
+            {
+                id: "005",
+                name: "مشروع متجر إلكتروني",
+                desc: "كود مشروع متجر إلكتروني كامل وجاهز.",
+                type: "أكواد مشاريع جاهزة",
+                img: "🛒"
+            },
+            {
+                id: "006",
+                name: "برنامج IDM مدفوع",
+                desc: "برنامج Internet Download Manager نسخة مدفوعة.",
+                type: "برامج مدفوعة",
+                img: "💾"
+            },
+            // برامج أدوبي
+            {
+                id: "007",
+                name: "Adobe Photoshop",
+                desc: "برنامج تحرير الصور الشهير نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "🖌️"
+            },
+            {
+                id: "008",
+                name: "Adobe Illustrator",
+                desc: "برنامج تصميم الفيكتور نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "🎨"
+            },
+            {
+                id: "009",
+                name: "Adobe Premiere Pro",
+                desc: "برنامج مونتاج الفيديو نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "🎬"
+            },
+            {
+                id: "010",
+                name: "Adobe After Effects",
+                desc: "برنامج المؤثرات البصرية نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "✨"
+            },
+            {
+                id: "011",
+                name: "Adobe Acrobat Pro",
+                desc: "برنامج تحرير ملفات PDF نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "📄"
+            },
+            {
+                id: "012",
+                name: "Adobe Lightroom",
+                desc: "برنامج تعديل الصور الفوتوغرافية نسخة مدفوعة.",
+                type: "برامج أدوبي",
+                img: "📷"
+            },
+            // جواهر فري فاير
+            {
+                id: "013",
+                name: "شراء جواهر فري فاير",
+                desc: "احصل على جواهر فري فاير بأسعار مميزة.",
+                type: "شحن ألعاب",
+                img: "💎"
+            },
+            // شدات ببجي
+            {
+                id: "014",
+                name: "شراء شدات ببجي",
+                desc: "شحن شدات ببجي بسرعة وسهولة.",
+                type: "شحن ألعاب",
+                img: "🔫"
+            },
+            // أكواد تفعيل ويندوز
+            {
+                id: "015",
+                name: "كود تفعيل ويندوز 10 برو",
+                desc: "كود أصلي لتفعيل ويندوز 10 برو.",
+                type: "أكواد تفعيل ويندوز",
+                img: "🔑"
+            },
+            {
+                id: "016",
+                name: "كود تفعيل ويندوز 11 برو",
+                desc: "كود أصلي لتفعيل ويندوز 11 برو.",
+                type: "أكواد تفعيل ويندوز",
+                img: "🔑"
+            },
+            {
+                id: "017",
+                name: "كود تفعيل ويندوز 7 ألتيميت",
+                desc: "كود أصلي لتفعيل ويندوز 7 ألتيميت.",
+                type: "أكواد تفعيل ويندوز",
+                img: "🔑"
+            },
+            // منتجات إضافية مقترحة
+            {
+                id: "018",
+                name: "كود تفعيل أوفيس 2021 برو",
+                desc: "كود أصلي لتفعيل Microsoft Office 2021.",
+                type: "أكواد تفعيل أوفيس",
+                img: "📑"
+            },
+            {
+                id: "019",
+                name: "اشتراك NordVPN لمدة سنة",
+                desc: "حماية وخصوصية عالية على الإنترنت.",
+                type: "اشتراكات VPN",
+                img: "🛡️"
+            },
+            {
+                id: "020",
+                name: "اشتراك Netflix لمدة شهر",
+                desc: "استمتع بمشاهدة الأفلام والمسلسلات.",
+                type: "اشتراكات منصات",
+                img: "🎬"
+            },
+            {
+                id: "021",
+                name: "قالب تصميم PSD احترافي",
+                desc: "قالب فوتوشوب جاهز للتعديل والاستخدام.",
+                type: "قوالب تصميم",
+                img: "📐"
+            },
+            {
+                id: "022",
+                name: "برنامج مكافحة الفيروسات ESET",
+                desc: "برنامج حماية شامل لجهازك.",
+                type: "أدوات حماية وأمان",
+                img: "🦠"
+            },
+            {
+                id: "023",
+                name: "كود تفعيل CorelDRAW",
+                desc: "كود أصلي لتفعيل برنامج CorelDRAW.",
+                type: "أكواد تفعيل برامج",
+                img: "✏️"
+            },
+            {
+                id: "024",
+                name: "كتاب إلكتروني: تعلم بايثون",
+                desc: "كتاب PDF لتعلم لغة البرمجة بايثون من الصفر.",
+                type: "كتب إلكترونية",
+                img: "📚"
+            },
+            {
+                id: "025",
+                name: "دورة برمجة تطبيقات أندرويد",
+                desc: "دورة رقمية لتعلم تطوير تطبيقات Android.",
+                type: "دورات رقمية",
+                img: "📱"
+            },
+            {
+                id: "026",
+                name: "كود بوت Discord جاهز",
+                desc: "كود بوت Discord قابل للتعديل والاستخدام.",
+                type: "بوتات Discord",
+                img: "🤖"
+            },
+            {
+                id: "027",
+                name: "كود تطبيق أندرويد جاهز",
+                desc: "كود مشروع تطبيق أندرويد كامل.",
+                type: "أكواد تطبيقات أندرويد",
+                img: "📲"
+            },
+            {
+                id: "028",
+                name: "كود تفعيل لعبة Steam",
+                desc: "كود أصلي لتفعيل لعبة على منصة Steam.",
+                type: "أكواد تفعيل ألعاب",
+                img: "🎮"
+            },
+            {
+                id: "029",
+                name: "اشتراك ChatGPT Plus لمدة شهر",
+                desc: "استمتع بمزايا ChatGPT Plus.",
+                type: "اشتراكات الذكاء الاصطناعي",
+                img: "🤖"
+            },
+            {
+                id: "030",
+                name: "حساب فري فاير - 10 دولار",
+                desc: "حساب فري فاير مميز بسعر 10 دولار.",
+                type: "حسابات فري فاير",
+                img: "🧑‍💻"
+            },
+            {
+                id: "031",
+                name: "حساب فري فاير - 20 دولار",
+                desc: "حساب فري فاير مميز بسعر 20 دولار.",
+                type: "حسابات فري فاير",
+                img: "🧑‍💻"
+            },
+            {
+                id: "032",
+                name: "حساب فري فاير - 50 دولار",
+                desc: "حساب فري فاير مميز بسعر 50 دولار.",
+                type: "حسابات فري فاير",
+                img: "🧑‍💻"
+            },
+            {
+                id: "033",
+                name: "حساب فري فاير - 100 دولار",
+                desc: "حساب فري فاير مميز بسعر 100 دولار.",
+                type: "حسابات فري فاير",
+                img: "🧑‍💻"
+                
+            },
+            {
+                id: "034",
+                name: "حساب xtream iptv",
+                desc: "حساب xtream iptv.",
+                type: "حسابات IPTV",
+                img: "🖥️"
+            },
+            {
+                id: "035",
+                name: "حساب Netflix - 10 دولار",
+                desc: "حساب Netflix مميز بسعر 10 دولار.",
+                type: "حسابات Netflix",
+                img: "📺"
+            },
+
+            {
+                id: "036",
+                name: "حساب Spotify - 10 دولار",
+                desc: "حساب Spotify مميز بسعر 10 دولار.",
+                type: "حسابات Spotify",
+                img: "🎵"
+            },
+             {
+                id: "037",
+                name: "حساب shahed vip 10 dt",
+                desc: "حساب فري فاير مميز بسعر 100 دولار.",
+                type: "حسابات فري فاير",
+                img: "🧑‍💻"
+            }
+
+
+        ];
+
+        // دالة توليد رابط الشراء
+        function getMailto(product) {
+            const subject = encodeURIComponent(`شراء المنتج: ${product.name}`);
+            const body = encodeURIComponent(
+                `اسم المنتج: ${product.name}\nرقم المنتج: ${product.id}\nالنوع: ${product.type}\nالرجاء إرسال تفاصيل التنزيل`
+            );
+            return `mailto:ameub57m@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        // عرض المنتجات
+        const container = document.getElementById('products');
+        products.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+
+            // صورة المنتج (placeholder)
+            const imgDiv = document.createElement('div');
+            imgDiv.className = 'product-img';
+            imgDiv.textContent = product.img;
+
+            // اسم المنتج
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'product-name';
+            nameDiv.textContent = product.name;
+
+            // وصف مختصر
+            const descDiv = document.createElement('div');
+            descDiv.className = 'product-desc';
+            descDiv.textContent = product.desc;
+
+            // نوع المنتج
+            const typeDiv = document.createElement('div');
+            typeDiv.className = 'product-type';
+            typeDiv.textContent = product.type;
+
+            // زر شراء
+            const buyBtn = document.createElement('a');
+            buyBtn.href = getMailto(product);
+            buyBtn.target = "_blank";
+            buyBtn.innerHTML = `<button class="buy-btn">شراء</button>`;
+
+            // تجميع الكارت
+            card.appendChild(imgDiv);
+            card.appendChild(nameDiv);
+            card.appendChild(descDiv);
+            card.appendChild(typeDiv);
+            card.appendChild(buyBtn);
+
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
